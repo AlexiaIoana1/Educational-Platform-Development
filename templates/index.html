@@ -1,0 +1,20 @@
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<head>
+</head>
+<body>
+<div>
+    <h1> Sign in </h1>
+    <form action="{{ url_for('login')}}" method="post">
+        <label>USERNAME</label><br>
+        <input type="text" name="username" id="username" required placeholder="Enter your username"><br><br>
+
+        <label>PASSWORD</label><br>
+        <input type="text" name="password" id="password" required placeholder="Enter your password"><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+</div>
+</body>
+</html>

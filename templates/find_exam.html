@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* Style the header */
+        .header {
+            background-color: rgb(12, 56, 89);
+            padding: 0px;
+            text-align: center;
+            border: 15px solid rgb(12, 56, 89);
+            margin: 20px;
+            width: auto;
+            color:#ddd;
+        }
+
+        form.example input[type=text] {
+          padding: 10px;
+          font-size: 17px;
+          border: 1px solid grey;
+          float: left;
+          width: 80%;
+          background: #f1f1f1;
+        }
+
+        form.example button {
+          float: left;
+          width: 20%;
+          padding: 10px;
+          background: #2196F3;
+          color: white;
+          font-size: 17px;
+          border: 1px solid grey;
+          border-left: none;
+          cursor: pointer;
+        }
+
+        form.example button:hover {
+          background: #0b7dda;
+        }
+
+        form.example::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+
+        /* Style the side navigation bar */
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: auto;
+            top: 0;
+            left: 0;
+            background-color: rgb(12, 56, 89);
+            overflow-x: hidden;
+            font-family: Garamond, serif;
+        }
+
+        .sidenav a {
+            color: white;
+            padding: 30px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color on hover */
+        .sidenav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Style the content */
+        .content {
+            margin-left: 200px;
+            padding-left: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .container {
+             display: flex;
+             align-items: center;
+             justify-content: center
+        }
+
+        /* Create three unequal columns that floats next to each other */
+        .column {
+            float: none;
+            padding: 10px;
+        }
+
+        /* Left and right column */
+        .column.top {
+            width: 25%;
+        }
+
+        /* Middle column */
+        .column.bottom {
+            width: 50%;
+        }
+
+        /* Clear floats after the columns */
+        .column:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+
+            .column.top,
+            .column.bottom {
+                width: 100%;
+            }
+        }
+
+        /* Style the footer */
+        .footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        th{
+            border-style:solid;
+            border-color: rgb(12, 56, 89);
+
+        }
+
+        td{
+
+            background-color: #D6E8FA;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="header">
+                <h2>All exams available</h2>
+        </div>
+
+        <div class="sidenav">
+                <a href="{{url_for('home')}}"> Home</a>
+                <a href="{{url_for('student_list')}}"> Enrolled Students</a>
+                <a href="{{url_for('course_list')}}"> Available Courses</a>
+                <a href="{{url_for('attendance')}}"> Attendance</a>
+                <a href="{{url_for('find_exam')}}"> Find Exam</a>
+                <a href="{{url_for('student_add')}}"> Add Student</a>
+                <a href="{{url_for('update_student')}}"> Update Student</a>
+        </div>
+
+        <h4 style="position: static; left:35%; top: 12%;"> Possible Search Variations :
+          <ul>
+            <li>Only Instructor's name</li>
+            <li>Course name and Exam type</li>
+          </ul>
+        </h4>
+
+        <form action="/find_exam" method="POST" style="position: static;
+                 top: 350px;
+                 left: 500px;
+                 border-style: groove;
+                 border-radius: 10px;
+                 padding: 50px;">
+
+            <!-- Rand cu numeprof -->
+            <div class="form-row">
+                <div class="form-row"style="text-align: left;"></div>
+                <label for="validationServer01"> Nume Instructor </label>
+                <input type="text" class="form-control" placeholder="Popescu Ion" name="numeprof" id="numeprof">
+            </div>
+
+              <!-- Rand cu numecurs -->
+            <div class="form-row">
+                <div class="form-row" style="text-align: center;">
+                <label for="validationServer02">Denumire Curs</label>
+                <input type="text" class="form-control" placeholder="HTML" name="numecurs" id="numecurs" >
+            </div>
+
+            <!-- Rand cu tipexamen -->
+            <div class="form-row">
+                <div class="form-row" style="text-align: right;">
+                <label for="validationServer03">Tip Examen</label>
+                <input type="text" class="form-control" placeholder="Teoretic / Practic" name="tipexam" id="tipexam" >
+            </div>
+
+            <button class="btn btn-primary" type="submit" style="position: static;">Find</button>
+
+        </form>
+
+        <table class="table caption-top" , style="width: 100%; position: static; top: 1000px;">
+            <thead>
+            <tr>
+                <th scope="col">Nume Instructor</th>
+                <th scope="col">Denumire Curs</th>
+                <th scope="col">Tipul Examenului</th>
+                <th scope="col">Data Sustinere</th>
+                <th scope="col">Durata Examen</th>
+                <th scope="col">Punctaj Minim</th>
+                <th scope="col">Totalul Studentilor Inscrisi</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for exam in exam %}
+                    <tr>
+                        <td>{{ exam.Nume }}</td>
+                        <td>{{ exam.Denumire }}</td>
+                        <td>{{ exam.Tip_Examen }}</td>
+                        <td>{{ exam.Data_Sustinerii }}</td>
+                        <td>{{ exam.Durata }}</td>
+                        <td>{{ exam.Punctaj_Minim }}</td>
+                        <td>{{ exam.Total_Studenti }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+    </div>
+
+</body>
