@@ -1,232 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Student</title>
+<style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Georgia, serif; background-color: #f9f9f9; }
 
-        body {
-            margin: 0;
-        }
+    /* Header */
+    .header {
+        background-color: rgb(12, 56, 89);
+        color: #ddd;
+        text-align: center;
+        padding: 15px;
+        border-bottom: 5px solid #0d3759;
+    }
 
-        /* Style the header */
-        .header {
-            background-color: rgb(12, 56, 89);
-            padding: 0px;
-            text-align: center;
-            border: 15px solid rgb(12, 56, 89);
-            margin: 20px;
-            width: auto;
-            color:#ddd;
-        }
+    /* Sidebar */
+    .sidenav {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgb(12, 56, 89);
+        overflow-x: hidden;
+        font-family: Garamond, serif;
+        padding-top: 10px;
+    }
 
-        form.example input[type=text] {
-          padding: 10px;
-          font-size: 17px;
-          border: 1px solid grey;
-          float: left;
-          width: 80%;
-          background: #f1f1f1;
-        }
+    .sidenav a {
+        color: white;
+        padding: 20px;
+        text-decoration: none;
+        display: block;
+        transition: background 0.3s;
+    }
 
-        form.example button {
-          float: left;
-          width: 20%;
-          padding: 10px;
-          background: #2196F3;
-          color: white;
-          font-size: 17px;
-          border: 1px solid grey;
-          border-left: none;
-          cursor: pointer;
-        }
+    .sidenav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
 
-        form.example button:hover {
-          background: #0b7dda;
-        }
+    /* Main content */
+    .content {
+        margin-left: 220px;
+        padding: 20px;
+    }
 
-        form.example::after {
-          content: "";
-          clear: both;
-          display: table;
-        }
+    /* Form styling */
+    form {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        padding: 40px 60px;
+        max-width: 700px;
+        margin: auto;
+    }
 
-        /* Style the side navigation bar */
-        .sidenav {
-            height: 100%;
-            width: 200px;
-            position: fixed;
-            z-index: auto;
-            top: 0;
-            left: 0;
-            background-color: rgb(12, 56, 89);
-            overflow-x: hidden;
-            font-family: Garamond, serif;
-        }
+    fieldset {
+        border: 2px solid rgb(12, 56, 89);
+        border-radius: 8px;
+        margin-bottom: 25px;
+        padding: 20px;
+    }
 
-        .sidenav a {
-            color: white;
-            padding: 30px;
-            text-decoration: none;
-            display: block;
-        }
+    legend {
+        font-weight: bold;
+        font-size: 1.1em;
+        color: rgb(12, 56, 89);
+    }
 
-        /* Change color on hover */
-        .sidenav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
 
-        /* Style the content */
-        .content {
-            margin-left: 200px;
-            padding-left: 20px;
-            font-family: Georgia, serif;
-        }
+    input[type=text],
+    select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        background-color: #f8fbff;
+    }
 
-        .container {
-             display: flex;
-             align-items: center;
-             justify-content: center
-        }
+    input[type=text]:focus,
+    select:focus {
+        outline: none;
+        border-color: #2196F3;
+        background-color: #fff;
+    }
 
-        /* Create three unequal columns that floats next to each other */
-        .column {
-            float: none;
-            padding: 10px;
-        }
+    .submit-btn {
+        background-color: rgb(12, 56, 89);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-size: 1em;
+        cursor: pointer;
+        display: block;
+        margin: 20px auto 0 auto;
+        transition: 0.3s;
+    }
 
-        /* Left and right column */
-        .column.top {
-            width: 25%;
-        }
+    .submit-btn:hover {
+        background-color: #0b7dda;
+    }
 
-        /* Middle column */
-        .column.bottom {
-            width: 50%;
-        }
-
-        /* Clear floats after the columns */
-        .column:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 600px) {
-
-            .column.top,
-            .column.bottom {
-                width: 100%;
-            }
-        }
-
-        /* Style the footer */
-        .footer {
-            background-color: #f1f1f1;
-            padding: 20px;
-            text-align: center;
-        }
-        th{
-            border-style:solid;
-            border-color: rgb(12, 56, 89);
-
-        }
-
-        td{
-
-            background-color: #D6E8FA;
-        }
-
-    </style>
+</style>
 </head>
 
 <body>
 
-    <div class="content">
-        <div class="header">
-                <h2>Enroll New Student</h2>
-        </div>
-
-        <div class="sidenav">
-                <a href="{{url_for('home')}}"> Home</a>
-                <a href="{{url_for('student_list')}}"> Enrolled Students</a>
-                <a href="{{url_for('course_list')}}"> Available Courses</a>
-                <a href="{{url_for('attendance')}}"> Attendance</a>
-                <a href="{{url_for('find_exam')}}"> Find Exam</a>
-                <a href="{{url_for('student_add')}}"> Add Student</a>
-                <a href="{{url_for('update_student')}}"> Update Student</a>
-        </div>
-
-        <form action="/student_add" method="POST" style="position: sticky;
-                     top: auto;
-                     left: auto;
-                     border-style: groove;
-                     border-radius: 10px;
-                     padding: 100px;">
-
-            <div class="form-row">
-                  <label for="validationServer01"> Nume Student </label>
-                  <input type="text" class="form-control" id="validationServer01" placeholder="Popescu Ion" name="numestud" id="numestud">
-
-            </div>
-            <br>
-            <div class="form-row">
-                  <label for="validationServer02">Adresa</label>
-                  <input type="text" class="form-control" id="validationServer02" placeholder="strada, judet, tara, cod postal" name="adresa" id="adresa">
-
-            </div>
-            <br>
-                <label for="sex">Sex</label>
-                    <select class="form-control" id="sex" required name="sex">
-                        <option value="M">Masculin</option>
-                        <option value="F">Feminin</option>
-                    </select>
-            <br>
-            <div class="form-row">
-                  <label for="validationServer02">Data Nastere</label>
-                  <input type="text" class="form-control" id="validationServer02" placeholder="0000-00-00" name="datanastere" id="datanastere">
-
-            </div>
-            <br>
-            <div class="form-row">
-                <label for="validationServer02">Date de Contact</label>
-                <input type="text" class="form-control" id="validationServer02" placeholder="+40 000 000 000" name="datecontact" id="datecontact">
-
-            </div>
-            <br>
-
-            <div class="form-row">
-                <label for="validationServer01"> Nume Curs </label>
-                <input type="text" class="form-control" id="validationServer01" placeholder="HTML" name="numecurs" id="numecurs">
-            </div>
-
-            <div class="form-row">
-                <label for="validationServer03">Stare Prezenta</label>
-                <input type="text" class="form-control" id="validationServer03" placeholder="Prezent" name="stareprezenta" id="stareprezenta">
-
-            </div>
-
-            <div class="form-row">
-                <label for="validationServer04">Data Prezenta</label>
-                <input type="text" class="form-control" id="validationServer04" placeholder="0000-00-00" name="dataprezenta" id="dataprezenta">
-            </div>
-
-            <div class="form-row">
-                <label for="validationServer05">Motivare</label>
-                <input type="text" class="form-control" id="validationServer05" placeholder="--" name="motivare" id="motivare">
-            </div>
-
-            <button class="btn btn-primary" type="submit" style="position: absolute;left: 42%;">Submit
-            </button>
-        </form>
-
+    <!-- Sidebar -->
+    <div class="sidenav">
+        <a href="{{url_for('home')}}">Home</a>
+        <a href="{{url_for('student_list')}}">Enrolled Students</a>
+        <a href="{{url_for('course_list')}}">Available Courses</a>
+        <a href="{{url_for('attendance')}}">Attendance</a>
+        <a href="{{url_for('find_exam')}}">Find Exam</a>
+        <a href="{{url_for('student_add')}}">Add Student</a>
+        <a href="{{url_for('update_student')}}">Update Student</a>
     </div>
 
+    <!-- Content -->
+    <div class="content">
+        <div class="header">
+            <h2>Enroll New Student</h2>
+        </div>
+
+        <form action="/student_add" method="POST">
+
+            <!-- STUDENT INFO -->
+            <fieldset>
+                <legend>Student Information</legend>
+
+                <label>Nume Student</label>
+                <input type="text" name="numestud" placeholder="Popescu Ion" required>
+
+                <label>Adresa</label>
+                <input type="text" name="adresa" placeholder="Strada, Județ, Țară, Cod poștal" required>
+
+                <label>Sex</label>
+                <select name="sex" required>
+                    <option value="">-- Alege sexul --</option>
+                    <option value="M">Masculin</option>
+                    <option value="F">Feminin</option>
+                </select>
+
+                <label>Data Naștere</label>
+                <input type="text" name="datanastere" placeholder="YYYY-MM-DD" required>
+
+                <label>Date de Contact</label>
+                <input type="text" name="datecontact" placeholder="+40 000 000 000" required>
+            </fieldset>
+
+            <!-- COURSE & ATTENDANCE -->
+            <fieldset>
+                <legend>Course & Attendance</legend>
+
+                <label>Nume Curs</label>
+                <input type="text" name="numecurs" placeholder="HTML" required>
+
+                <label>Stare Prezență</label>
+                <input type="text" name="stareprezenta" placeholder="Prezent / Absent / Motivat" required>
+
+                <label>Data Prezență</label>
+                <input type="text" name="dataprezenta" placeholder="YYYY-MM-DD" required>
+
+                <label>Motivare</label>
+                <input type="text" name="motivare" placeholder="--">
+            </fieldset>
+
+            <button type="submit" class="submit-btn">Enroll Student</button>
+        </form>
+    </div>
 </body>
+</html>

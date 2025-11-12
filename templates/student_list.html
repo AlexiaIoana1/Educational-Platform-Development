@@ -155,12 +155,12 @@
                             <td>{{ student.Data_Nastere }}</td>
                             <td>{{ student.Date_Contact }}</td>
                             <td>
-                                <a href="{{ url_for('delete' , student_name = student.ID_Student ) }}" class="btn btn-danger" type="submit" style="color: black;">Delete</a>
+                                <a href="{{ url_for('delete', id_student=student.ID_Student ) }}" class="btn btn-danger" style="color: black;">Delete</a>
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
-
+            </table>
         </div>
 
     </div>
